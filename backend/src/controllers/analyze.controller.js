@@ -1,6 +1,28 @@
 import { callLLM } from "../services/llm.service.js";
 import { ingredientPrompt } from "../prompts/ingredient.prompt.js";
 import demoResponse from "../mocks/sampleResponse.js";
+import { polishText } from "../services/wordingPolish.js";
+
+// Apply wording polish safely across response
+const polishResponse = (result) => {
+  if (!result) return result;
+
+  return {
+    ...result,
+    shouldICare: polishText(result.shouldICare),
+    decision: polishText(result.decision),
+    reasoning: polishText(result.reasoning),
+    comparison: polishText(result.comparison),
+    primaryConcern: {
+      ...result.primaryConcern,
+      whyItMatters: polishText(result.primaryConcern?.whyItMatters),
+    },
+    secondaryConcern: {
+      ...result.secondaryConcern,
+      whyItMatters: polishText(result.secondaryConcern?.whyItMatters),
+    },
+  };
+};
 
 export const analyzeIngredients = async (req, res) => {
   try {
@@ -14,11 +36,13 @@ export const analyzeIngredients = async (req, res) => {
 
     const llmResult = await callLLM(prompt);
 
-    return res.json(llmResult);
+    const finalResult = polishResponse(llmResult);
+
+    return res.json(finalResult);
   } catch (error) {
     console.error("LLM Error:", error.message);
 
-    // 🔥 Hackathon-safe fallback
-    return res.json(demoResponse);
+    // 🔥 Hackathon-safe fallback (also polished for consistency)
+    return res.json(polishResponse(demoResponse));
   }
 };

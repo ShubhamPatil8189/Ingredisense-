@@ -1,87 +1,108 @@
 import { useNavigate, Link } from "react-router-dom";
 import { CheckCircle, AlertTriangle, ListOrdered, ArrowRight } from "lucide-react";
 import Header from "@/components/layout/Header";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const TransparencyReport = () => {
   const navigate = useNavigate();
 
-  // 45 Realistic Ingredients for a Plant-Based Burger
+  // Example ingredient list used to demonstrate reasoning depth
   const ingredients = [
-    "Water", "Organic Pea Protein", "Expeller-Pressed Canola Oil", "Refined Coconut Oil", "Rice Protein", 
-    "Natural Flavors", "Dried Yeast", "Mung Bean Protein", "Methylcellulose", "Potato Starch", 
-    "Apple Extract", "Potassium Chloride", "Salt", "Vinegar", "Lemon Juice Concentrate", 
-    "Sunflower Lecithin", "Beet Juice Extract", "Pomegranate Fruit Powder", "Lycopene", "Vitamins (B3, B6, B12)", 
-    "Pantothenate", "Zinc Gluconate", "Ferric Orthophosphate", "Calcium", "Magnesium Carbonate",
-    "Organic Garlic Powder", "Organic Onion Powder", "Hickory Smoke Flavor", "Spices", "Bamboo Cellulose",
-    "Cultured Dextrose", "Vegetable Glycerin", "Guar Gum", "Gum Arabic", "Citric Acid",
-    "Ascorbic Acid", "Annatto Color", "Organic Cane Sugar (Trace)", "Sea Salt", "Potassium Citrate",
-    "Iron Pyrophosphate", "Thiamine Hydrochloride", "Riboflavin", "Niacinamide", "Pyridoxine"
+    "Water", "Pea Protein", "Canola Oil", "Coconut Oil", "Rice Protein",
+    "Natural Flavors", "Methylcellulose", "Potato Starch", "Salt",
+    "Vinegar", "Yeast Extract", "Beet Juice Extract", "Sunflower Lecithin",
+    "Cultured Dextrose", "Citric Acid", "Spices"
   ];
 
   return (
     <div className="min-h-screen bg-[#070b09] text-white font-sans selection:bg-green-500/30">
       <Header variant="full" showSearch />
-      
+
       <main className="container mx-auto px-6 pt-20 pb-16 max-w-5xl">
-        {/* Header Section */}
+        {/* Header */}
         <div className="mb-8 animate-fade-in">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#22c55e] mb-2">
             TRANSPARENCY REPORT
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
-            How we analyzed this product
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
+            How IngrediSense reached this decision
           </h1>
           <p className="text-gray-400 text-sm md:text-base">
-            A complete breakdown of our findings for <span className="text-white font-medium">Organic Plant-Based Burger Patties</span>.
+            This report explains how our AI evaluated the ingredient list and
+            arrived at a recommendation — without relying on nutrition labels
+            or health claims.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-6">
-          {/* Left Column */}
+          {/* Left column */}
           <div className="lg:col-span-8 space-y-6">
-            
-            {/* Analysis Conclusion Card */}
-            <div className="bg-[#0f1712] border border-white/5 rounded-xl p-6 shadow-sm">
+            {/* Decision Logic */}
+            <div className="bg-[#0f1712] border border-white/5 rounded-xl p-6">
               <div className="flex items-center gap-2.5 mb-4">
                 <CheckCircle className="h-5 w-5 text-[#22c55e]" />
-                <h2 className="text-lg font-semibold text-white">Analysis Conclusion</h2>
+                <h2 className="text-lg font-semibold">
+                  Decision Logic Summary
+                </h2>
               </div>
-              <p className="text-gray-300 leading-relaxed mb-6 text-sm">
-                Based on your preferences for <span className="text-white font-semibold">Low Sugar</span> and <span className="text-white font-semibold">Vegan</span> diets, we analyzed the nutritional panel and 45 distinct ingredients to ensure they meet your safety standards. The product contains no animal-derived ingredients and falls within the acceptable sugar intake range for a single serving.
+
+              <p className="text-gray-300 text-sm leading-relaxed mb-5">
+                IngrediSense does not judge foods as “good” or “bad.”
+                Instead, it evaluates whether an ingredient combination
+                supports <span className="text-white font-medium">routine consumption</span>
+                or is better treated as an <span className="text-white font-medium">occasional choice</span>.
               </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full bg-[#14261c] text-[#4ade80] text-[11px] font-bold border border-[#22c55e]/20">
-                  Safe to consume
-                </span>
-                <span className="px-3 py-1 rounded-full bg-[#1a1f1c] text-gray-400 text-[11px] font-bold border border-white/10">
-                  No Allergens Detected
-                </span>
-              </div>
+
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li>• Ingredients linked to quick hunger return were prioritized</li>
+                <li>• Additives were evaluated by their role in eating habits</li>
+                <li>• The final decision reflects usage frequency, not safety claims</li>
+              </ul>
             </div>
 
-            {/* Our Philosophy Card */}
+            {/* How the system thinks */}
             <div className="bg-[#0f1712] border border-white/5 rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-white mb-3">Our Philosophy</h2>
-              <p className="text-gray-400 leading-relaxed text-sm">
-                We focus on ingredients that impact daily health decisions. Our AI prioritizes evidence-based nutritional science over marketing claims. We flag additives, excessive preservatives, and hidden sugars to give you a clear picture of what you are eating.
+              <h2 className="text-lg font-semibold mb-3">
+                How the AI reasons
+              </h2>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The system identifies one primary ingredient that most strongly
+                affects eating behavior, followed by one secondary ingredient
+                that reinforces that effect. All other ingredients are ignored
+                to reduce noise and decision fatigue.
               </p>
             </div>
 
-            {/* Accordion Ingredient List */}
-            <Accordion type="single" collapsible className="bg-[#0f1712] border border-white/5 rounded-xl overflow-hidden">
+            {/* Ingredient list */}
+            <Accordion
+              type="single"
+              collapsible
+              className="bg-[#0f1712] border border-white/5 rounded-xl overflow-hidden"
+            >
               <AccordionItem value="ingredients" className="border-none">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-white/5">
+                <AccordionTrigger className="px-6 py-4 hover:bg-white/5">
                   <div className="flex items-center gap-3">
                     <ListOrdered className="h-5 w-5 text-gray-400" />
-                    <span className="text-base font-semibold text-white">Full Ingredient List (45 items)</span>
+                    <span className="text-base font-semibold">
+                      Ingredients analyzed (example list)
+                    </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6 border-t border-white/5 pt-4">
+                <AccordionContent className="px-6 pb-6 pt-4 border-t border-white/5">
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2">
                     {ingredients.map((item, i) => (
-                      <div key={i} className="text-[12px] text-gray-500 flex items-center gap-2">
-                        <span className="text-[10px] text-green-800 font-mono">{(i + 1).toString().padStart(2, '0')}</span>
+                      <div
+                        key={i}
+                        className="text-[12px] text-gray-500 flex items-center gap-2"
+                      >
+                        <span className="text-[10px] text-green-800 font-mono">
+                          {(i + 1).toString().padStart(2, "0")}
+                        </span>
                         {item}
                       </div>
                     ))}
@@ -91,39 +112,35 @@ const TransparencyReport = () => {
             </Accordion>
           </div>
 
-          {/* Right Column (Sidebar) */}
+          {/* Right column */}
           <div className="lg:col-span-4 space-y-6">
-            
-            {/* Data Sources Card */}
+            {/* Data Philosophy */}
             <div className="bg-[#0f1712] border border-white/5 rounded-xl p-6">
-              <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-5">Data Sources</h3>
-              <div className="space-y-4">
-                {[
-                  "USDA FoodData Central", 
-                  "OpenFoodFacts Database", 
-                  "FDA GRAS List (Generally Recognized as Safe)"
-                ].map((source, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-[#22c55e] flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-400 text-[13px] leading-tight">{source}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/5">
-                <Link to="#" className="text-[#22c55e] text-[12px] font-bold flex items-center gap-2 hover:opacity-80 transition-opacity">
-                  Learn more about our methodology <ArrowRight className="h-3 w-3" />
-                </Link>
-              </div>
+              <h3 className="text-xs font-bold uppercase tracking-widest mb-4">
+                What we use (and don’t)
+              </h3>
+
+              <ul className="space-y-3 text-[13px] text-gray-400">
+                <li>✓ Ingredient ordering and grouping</li>
+                <li>✓ Known usage patterns of common additives</li>
+                <li>✓ Contextual reasoning about eating habits</li>
+                <li className="text-red-400/80">✕ No nutrition label math</li>
+                <li className="text-red-400/80">✕ No medical evaluation</li>
+              </ul>
             </div>
 
-            {/* Disclaimer Card */}
+            {/* Disclaimer */}
             <div className="bg-[#14100b] border border-orange-900/20 rounded-xl p-6">
               <div className="flex items-center gap-2.5 mb-3">
                 <AlertTriangle className="h-4 w-4 text-orange-500/80" />
-                <h3 className="text-xs font-bold text-orange-500/80 uppercase tracking-wider">Important Disclaimer</h3>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-orange-500/80">
+                  Important context
+                </h3>
               </div>
               <p className="text-[11px] text-gray-500 leading-relaxed">
-                This analysis is generated by AI and is not medical advice. While we strive for accuracy, formulations can change. Always check the physical packaging label before consumption, especially if you have severe allergies.
+                IngrediSense provides decision guidance, not health advice.
+                Ingredient formulations and personal tolerance vary.
+                Use this analysis to guide choices — not replace labels or professionals.
               </p>
             </div>
           </div>
