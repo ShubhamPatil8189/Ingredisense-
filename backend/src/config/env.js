@@ -15,6 +15,4 @@ const env = {
   GEMINI_API_KEY: process.env.GEMINI_API_KEY,
 };
 
-console.log(process.env.GEMINI_API_KEY);
-
 export default env;
