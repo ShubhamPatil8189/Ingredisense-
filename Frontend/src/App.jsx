@@ -9,6 +9,7 @@ import Demo from "./pages/Demo";
 import AnalysisResult from "./pages/AnalysisResult";
 import TransparencyReport from "./pages/TransparencyReport";
 import NotFound from "./pages/NotFound";
+import CompareDemo from "./pages/CompareDemo";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/demo" element={<Demo />} />
           <Route path="/analysis" element={<AnalysisResult />} />
           <Route path="/transparency" element={<TransparencyReport />} />
+          <Route path="/compare" element={<CompareDemo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

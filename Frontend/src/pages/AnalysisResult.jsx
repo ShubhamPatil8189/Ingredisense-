@@ -58,6 +58,38 @@ const AnalysisResult = () => {
 
   if (!result) return null;
 
+  /* ===============================
+     🚫 NOT INGREDIENT LIST STATE
+     =============================== */
+  if (result.type === "not_ingredients" || result.type === "invalid_input") {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header variant="minimal" />
+
+        <main className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+          <h1 className="text-2xl font-bold text-foreground mb-3">
+            {result.decision || "We couldn’t analyze this"}
+          </h1>
+
+          <p className="text-muted-foreground max-w-md mb-6">
+            {result.reasoning ||
+              "Please paste an ingredient list from a food label."}
+          </p>
+
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-primary text-primary-foreground px-6"
+          >
+            Try again
+          </Button>
+        </main>
+      </div>
+    );
+  }
+
+  /* ===============================
+     ✅ NORMAL ANALYSIS UI
+     =============================== */
   return (
     <div className="min-h-screen bg-background">
       <Header variant="minimal" />
@@ -71,11 +103,13 @@ const AnalysisResult = () => {
         </div>
 
         {/* SHOULD I CARE */}
-        <div className="text-center mb-2 animate-fade-in">
-          <p className="text-sm text-muted-foreground">
-            Most people don’t need to worry if eaten occasionally.
-          </p>
-        </div>
+        {result.shouldICare && (
+          <div className="text-center mb-2 animate-fade-in">
+            <p className="text-sm text-muted-foreground">
+              {result.shouldICare}
+            </p>
+          </div>
+        )}
 
         {/* DECISION */}
         <div className="text-center mb-10 animate-fade-in">
@@ -83,7 +117,6 @@ const AnalysisResult = () => {
             {result.decision}
           </h1>
 
-          {/* SHORT, SCANNABLE REASONING */}
           <p className="text-muted-foreground max-w-xl mx-auto text-sm">
             {result.reasoning}
           </p>
@@ -98,15 +131,15 @@ const AnalysisResult = () => {
           >
             <div className="space-y-3">
               <IngredientItem
-                name={result.primaryConcern.ingredient}
-                description={result.primaryConcern.whyItMatters}
+                name={result.primaryConcern?.ingredient}
+                description={result.primaryConcern?.whyItMatters}
                 icon="⚠️"
                 iconBg="bg-warning/20"
               />
 
               <IngredientItem
-                name={result.secondaryConcern.ingredient}
-                description={result.secondaryConcern.whyItMatters}
+                name={result.secondaryConcern?.ingredient}
+                description={result.secondaryConcern?.whyItMatters}
                 icon="➕"
                 iconBg="bg-secondary/20"
               />
@@ -131,7 +164,7 @@ const AnalysisResult = () => {
             iconColor="text-warning"
           >
             <div className="flex flex-wrap gap-2">
-              {result.whoShouldAvoid.map((item, idx) => (
+              {result.whoShouldAvoid?.map((item, idx) => (
                 <StatusBadge key={idx} variant="warning">
                   {item}
                 </StatusBadge>
