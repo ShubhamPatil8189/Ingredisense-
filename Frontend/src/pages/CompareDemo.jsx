@@ -7,7 +7,7 @@ const CompareDemo = () => {
   const [result, setResult] = useState(null);
 
   const compare = async () => {
-    const res = await fetch("http://localhost:4000/api/compare", {
+    const res = await fetch("https://ingredisense-backend.onrender.com/api/compare", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ingredientsA: a, ingredientsB: b }),
