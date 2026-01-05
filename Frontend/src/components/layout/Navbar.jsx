@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from "react-router-dom";
-import { Triangle } from "lucide-react";
+import { Leaf } from "lucide-react"; // Switched to Leaf to match your Header
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const location = useLocation();
 
-  // Updated navigation links to match the images
   const navLinks = [
     { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
+    { label: "Transparency", path: "/transparency" },
     { label: "Demo", path: "/demo" },
-    { label: "Contact", path: "/contact" },
   ];
 
   return (
@@ -21,12 +19,12 @@ const Navbar = () => {
         {/* Left Side: Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="flex h-6 w-6 items-center justify-center rounded bg-[#22c55e] transition-transform group-hover:scale-110">
-              {/* Diamond-style logo using Triangle */}
-              <Triangle className="h-3.5 w-3.5 fill-black text-black rotate-180" />
+            {/* Icon container using your Primary Green color */}
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#22c55e] transition-transform group-hover:scale-110">
+              <Leaf className="h-5 w-5 text-black" /> 
             </div>
             <span className="text-lg font-bold tracking-tight text-white">
-              Ingredient AI
+              IngredieSense
             </span>
           </Link>
         </div>
@@ -36,7 +34,7 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
-                key={link.path}
+                key={link.label}
                 to={link.path}
                 className={`text-sm transition-colors ${
                   location.pathname === link.path 

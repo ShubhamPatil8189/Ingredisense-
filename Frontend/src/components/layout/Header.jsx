@@ -19,7 +19,7 @@ const Header = ({ variant = "minimal", showSearch = false }) => {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Leaf className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-lg font-semibold text-foreground">FoodAI</span>
+            <span className="text-lg font-semibold text-foreground">    IngredieSense</span>
           </Link>
           
           <div className="flex items-center gap-4">
@@ -41,7 +41,7 @@ const Header = ({ variant = "minimal", showSearch = false }) => {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Leaf className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-lg font-semibold text-foreground">SafeFood AI</span>
+            <span className="text-lg font-semibold text-foreground">    IngredieSense</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">
