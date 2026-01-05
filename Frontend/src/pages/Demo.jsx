@@ -1,16 +1,16 @@
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import Header from "@/components/layout/Header";
-import ProductCard from "@/components/cards/ProductCard";
-import { StatusBadge } from "@/components/ui/status-badge";
+import Navbar from "../components/layout/Navbar"; 
+import ProductCard from "../components/cards/ProductCard";
+import { StatusBadge } from "../components/ui/status-badge";
 
 const demoProducts = [
   {
     id: "chips",
     name: "Classic Potato Chips",
-    description: "Standard supermarket variety. Contains various additives.",
-    image:
-      "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=300&fit=crop",
+    description: "Standard supermarket variety. Contains various additives, preservatives, and high sodium levels.",
+    image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=300&fit=crop",
     badge: "ultra-processed",
     badgeLabel: "Ultra-processed",
     ingredients:
@@ -19,9 +19,8 @@ const demoProducts = [
   {
     id: "soda",
     name: "Orange Soda",
-    description: "Popular carbonated beverage with high fructose corn syrup.",
-    image:
-      "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop",
+    description: "Popular carbonated beverage. High fructose corn syrup, artificial colors (Yellow 6), and caffeine.",
+    image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop",
     badge: "high-sugar",
     badgeLabel: "High Sugar",
     ingredients:
@@ -30,9 +29,8 @@ const demoProducts = [
   {
     id: "babyfood",
     name: "Organic Baby Food",
-    description: "Pureed fruit and vegetable blend. Certified organic.",
-    image:
-      "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&h=300&fit=crop",
+    description: "Pureed fruit and vegetable blend. Certified organic, no added sugars, and minimally processed.",
+    image: "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&h=300&fit=crop",
     badge: "clean-label",
     badgeLabel: "Clean Label",
     ingredients:
@@ -54,53 +52,42 @@ const Demo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header variant="full" />
+    <div className="min-h-screen bg-[#040806] text-white font-sans">
+      <Navbar />
 
-      <main className="container mx-auto px-4 pt-24 pb-20">
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4 animate-fade-in">
-            <StatusBadge
-              variant="safe"
-              className="uppercase text-xs font-semibold tracking-wider"
-            >
+      <main className="container mx-auto px-6 pt-32 pb-20 max-w-6xl">
+        <div className="text-center mb-16">
+          <div className="flex justify-center mb-6 animate-fade-in">
+            <StatusBadge className="bg-green-500/10 text-green-500 border-green-500/20 uppercase text-[10px] font-bold tracking-widest px-3 py-1">
               Live Demo
             </StatusBadge>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
             Try an example
           </h1>
 
-          <p className="text-muted-foreground max-w-xl mx-auto animate-fade-in">
-            Select a product below to see how our AI analyzes ingredients.
+          <p className="text-gray-400 max-w-xl mx-auto animate-fade-in">
+            Select a product below to see how our AI analyzes ingredients for safety, nutrition, and processing levels.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {demoProducts.map((product, index) => (
-            <div
-              key={product.id}
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
-              <ProductCard
-                {...product}
-                onAnalyze={() => handleAnalyze(product)}
-              />
+            <div key={product.id} className="animate-fade-in">
+              <ProductCard {...product} onAnalyze={() => handleAnalyze(product)} />
             </div>
           ))}
         </div>
 
-        <div className="text-center animate-fade-in">
-          <p className="text-muted-foreground mb-3">
-            Already know what you're eating?
-          </p>
+        <div className="text-center animate-fade-in space-y-4">
+          <p className="text-gray-500 text-sm">Already know what you're eating?</p>
           <button
             onClick={() => navigate("/")}
-            className="inline-flex items-center gap-2 font-semibold text-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 font-bold hover:text-green-400 transition-colors group"
           >
             Skip demo and upload my own
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </main>
